@@ -168,7 +168,6 @@
         curCoord[0] = (this.get('n')-1);
       }
       for (var i = Math.max(((this.get('n')-1) - curCoord[0]), curCoord[1]); i < this.get('n'); i++) {
-        console.log(curCoord);
         sum += this.rows()[curCoord[1]][curCoord[0]];
         curCoord = [curCoord[0] - 1, curCoord[1] + 1];
       }
