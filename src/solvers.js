@@ -12,6 +12,22 @@
 
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n rooks placed such that none of them can attack each other
+window.recursiveFindNRooksSolution = function(n) {
+
+  var board = new Board({'n':n});
+  var solvedBoards; 
+  var matrix = board.rows();
+  var recursiveHelper = function(board, row) {
+    if(row === n) {
+      for(var i = 0; i < n; i++) {
+        board.togglePiece(n-1, i);
+        if(board.hasNoRooksConflicts()) {
+          
+        }
+      }
+    }
+  }
+}
 
 window.findNRooksSolution = function(n) {
 
@@ -63,7 +79,22 @@ window.findNRooksSolution = function(n) {
       }
     }
 
-    return solutionCleaner(rotatedSolutions);
+    var rotatedAndMirroredSolutions = [];
+    for(var p = 0; p < rotatedSolutions.length; p++) {
+      rotatedAndMirroredSolutions.push(rotatedSolutions[p]);
+      rotatedAndMirroredSolutions.push(mirror(rotatedAndMirroredSolutions[p]));
+    }
+
+    return solutionCleaner(rotatedAndMirroredSolutions);
+  }
+
+  var mirror = function(oldMatrix) {
+    var n = oldMatrix.length;
+    var newMatrix = [];
+    for(var i = 0; i < n; i++) {
+      newMatrix.push(oldMatrix[i].reverse());
+    }
+    return newMatrix;
   }
 
   var rotateClockwise = function(oldMatrix) {
